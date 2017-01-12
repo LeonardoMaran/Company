@@ -1,0 +1,36 @@
+.accordion
+  font-size: 12px
+  text-align: center
+  color: #fff
+  li, ul
+    padding: 0
+    margin: 0
+    list-style: none
+.accordion.accordion-title
+  -moz-user-select: none
+  -webkit-user-select: none
+  -ms-user-select: none
+  user-select: none
+  padding: 0
+  margin: 0
+  cursor: pointer
+  background: #42485B
+  font-weight: normal
+  line-height: 40px
+  transition-duration: 0.4s
+.accordion.accordion-title:hover
+  background: #00C1DE
+.accordion.accordion-content
+  display: none
+.accordion.accordion-content.active
+  display: block
+.accordion.accordion-content>li>a
+  display: block
+  cursor: pointer
+  line-height: 40px
+  color: #bebdb5
+  text-decoration: none
+  transition-duration: 0.4s
+  width: 100%
+.accordion.accordion-content>li>a:hover
+  background: #4A5064

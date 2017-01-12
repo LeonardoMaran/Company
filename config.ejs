@@ -1,0 +1,17 @@
+const config = {
+  appKey: '00001',
+  secret: 'abcdeabcdeabcdeabcdeabcde',
+  servicePhone: '4001-569-569',
+};
+
+<% if (process.env.NODE_ENV == 'development') { %>
+  export default {
+    ...config,
+    apiUrl: 'http://localhost:4567',
+  }
+<% } else { %>
+  export default {
+    ...config,
+    apiUrl: 'http://api.yunluwang.com/router',
+  }
+<% } %>

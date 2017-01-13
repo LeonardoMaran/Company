@@ -10,8 +10,10 @@ export default class Supplier extends Component {
   getSupplier = () => {
     ApiCaller.loadData('/api/contact', {
       query: {"supplier": true},
-    }, result => {
-      this.setState({suppliers: result.item});
+    }, (result, error) => {
+      if(result.status == 200) {
+        this.setState({suppliers: result.body.item});        
+      }
     });
   }
 
@@ -21,9 +23,11 @@ export default class Supplier extends Component {
   }
 
   deleteSupplier = () => {
-    ApiCaller.deleteData(`/api/contact/${this.state.supplierId}`, {}, result => {
-      this.getSupplier();
-      this.refs.delete.close();
+    ApiCaller.deleteData(`/api/contact/${this.state.supplierId}`, {}, (result, error) => {
+      if(result.status == 200) {
+        this.getSupplier();
+        this.refs.delete.close();
+      }
     });
   }
 

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router';
 import DataTable from '../components/DataTable';
 import Dialog, {DialogHeader, DialogBody, DialogFooter} from '../components/Dialog';
+import Session from '../lib/Session';
 import ApiCaller from '../lib/ApiCaller';
 import '../styles/Users.sass';
 
@@ -13,21 +14,28 @@ export default class Users extends Component {
     this.refs.delete.open();
   }
 
-  deleteUser = () => {
-    ApiCaller.deleteData(`/api/user/${this.state.userId}`, {}, result => {
-      this.getUser();
-      this.refs.delete.close();
-    })
-  }
-
   getUser = () => {
-    ApiCaller.loadData(`/api/user`, {}, result => {
-      this.setState({users: result.item});
+    ApiCaller.loadData(`/api/user`, {}, (result, error) => {
+      if(result.status == 200) {
+        this.setState({users: result.body.item});
+      }
     });
   }
 
+  deleteUser = () => {
+    ApiCaller.deleteData(`/api/user/${this.state.userId}`, {}, (result, error) => {
+      if(result.status == 200) {
+        this.getUser();
+        this.refs.delete.close();
+      }
+    })
+  }
+
   componentDidMount() {
-    this.getUser();
+    let account = Session.current();
+    if(account != null) {
+      this.getUser();
+    }
   }
 
   render() {

@@ -7,8 +7,12 @@ export default class Department extends Component {
   state = {departments: []};
 
   componentDidMount() {
-    ApiCaller.loadData(`/api/department`, {}, result => {
-      this.setState({departments: result.item});
+    ApiCaller.loadData(`/api/department`, {}, (result, error) => {
+      if(result.status == 200) {
+        this.setState({departments: result.body.item});
+      } else {
+				this.setState({message: result.text});
+      }
     });
   }
 

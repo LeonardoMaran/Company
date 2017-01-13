@@ -12,8 +12,10 @@ export default class NewUser extends Component {
       "realname": this.refs.realname.value,
       "email": this.refs.email.value,
       "phone": this.refs.phone.value
-    }, result => {
-      browserHistory.push("/config/users");
+    }, (result, error) => {
+      if(result.status == 200) {
+        browserHistory.push("/config/users");
+      }
     });
   }
 

@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router';
+import {Link, browserHistory} from 'react-router';
 import ShowPassword from '../components/ShowPassword';
 import ApiCaller from '../lib/ApiCaller';
+import Session from '../lib/Session';
 import '../styles/Login.sass';
 
 export default class Login extends Component {
-	state = {show: false};
+	state = {show: false, message: ''};
 
 	showPassword = () => {
 		this.setState({show: !this.state.show});
@@ -15,21 +16,26 @@ export default class Login extends Component {
 		ApiCaller.postData('/account/login', {
 			'username': this.refs.username.value,
 			'password': this.refs.password.value
-		}, result => {
-
+		}, (result, error) => {
+			if (result.status == 200) {
+				let account = result.body;
+        Session.login(account);
+        browserHistory.push('/config/users');
+			} else {
+				this.setState({message: result.text});
+			}
 		});
 	}
 
 	render() {
+		let error_message = this.state.message;
 		return (
 	  	<div id="login">
 				<div id="form">
 					<div id="form_wrapper" >
 						<h1 id="title">登录</h1>
 						<p>需要一个账号吗？<Link to="/register">注册</Link></p>
-						<div id="warning">
-						hhhhhhhhhhhhhhhh
-						</div>
+						{error_message != '' ? <div id="warning">{error_message}</div> : null}
 						<div className="field-wrapper">
 							<label htmlFor="username">用户名：</label>
 							<input ref="username" type="text" name="username" id="username" />

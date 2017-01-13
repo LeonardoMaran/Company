@@ -7,8 +7,10 @@ export default class Employee extends Component {
   state = {employees: []};
 
   componentDidMount() {
-    ApiCaller.loadData(`/api/employee`, {}, result => {
-      this.setState({employees: result.item});
+    ApiCaller.loadData(`/api/employee`, {}, (result, error) => {
+      if(result.status == 200) {
+        this.setState({employees: result.body.item});
+      }
     });
   }
 

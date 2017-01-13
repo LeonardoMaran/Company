@@ -38,7 +38,7 @@ class ApiCaller {
       if (err) {
         this.handleError(err, res);
       } else {
-        callback && callback(res.body);
+        callback && callback(res, err);
       }
       NProgress.done();
     });
@@ -99,7 +99,7 @@ class ApiCaller {
         if (err) {
           this.handleError(err, res);
         } else {
-          resolve(res.body);
+          resolve(res, err);
         }
         NProgress.done();
       });
@@ -119,7 +119,7 @@ class ApiCaller {
         if (err) {
           this.handleError(err, res);
         } else {
-          resolve(res.body);
+          resolve(res, err);
         }
         NProgress.done();
       });
@@ -139,7 +139,7 @@ class ApiCaller {
         if (err) {
           this.handleError(err, res);
         } else {
-          resolve(res.body);
+          resolve(res, err);
         }
         NProgress.done();
       });

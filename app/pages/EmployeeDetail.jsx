@@ -6,8 +6,10 @@ export default class EmployeeDetail extends Component {
   state = {employee_detail: {}};
 
   componentDidMount() {
-    ApiCaller.loadData(`/api/employee/${this.props.params.id}`, {}, result => {
-      this.setState({employee_detail: result});
+    ApiCaller.loadData(`/api/employee/${this.props.params.id}`, {}, (result, error) => {
+      if(result.status == 200) {
+        this.setState({employee_detail: result.body});
+      }
     });
   }
 

@@ -23,7 +23,6 @@ export default class DataTable extends Component {
     };
 
     let {fields, items, ...other} = this.props;
-
     return (
       <table className="table data-table" {...other}>
         <thead>

@@ -12,8 +12,10 @@ export default class NewSupplier extends Component {
       "phone": this.refs.phone.value,
       "email": this.refs.email.value,
       "supplier": true
-    }, result => {
-      browserHistory.push('/purchase/supplier');
+    }, (result, error) => {
+      if(result.status == 200) {
+        browserHistory.push('/purchase/supplier');
+      }
     })
   }
 

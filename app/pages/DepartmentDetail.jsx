@@ -5,8 +5,10 @@ export default class DepartmentDetail extends Component {
   state = {department_detail: {}};
 
   componentDidMount() {
-    ApiCaller.loadData(`/api/department/${this.props.params.id}`, {}, result => {
-      this.setState({department_detail: result});
+    ApiCaller.loadData(`/api/department/${this.props.params.id}`, {}, (result, error) => {
+      if(result.status == 200) {
+        this.setState({department_detail: result.body});
+      }
     });
   }
 

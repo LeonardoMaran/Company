@@ -6,8 +6,8 @@ export default class User extends Component {
   state = {user: {}};
 
   componentDidMount() {
-    ApiCaller.loadData(`/api/user/${this.props.params.id}`, {}, result => {
-      this.setState({user: result});
+    ApiCaller.loadData(`/api/user/${this.props.params.id}`, {}, (result, error) => {
+      this.setState({user: result.body});
     });
   }
 

@@ -1,3 +1,15 @@
+import moment from 'moment';
+
+export function formatDate(time, format = 'Y-MM-DD') {
+  if(!time) return '';
+  return moment(time).format(format);
+}
+
+export function formatTime(time, format = 'Y-MM-DD HH:mm:ss') {
+  if(!time) return '';
+  return moment(time).format(format);
+}
+
 Array.prototype.insertSeparator = function (sep) {
   if (this === null || this.length < 2) return this;
   let result = new Array(this.length * 2 - 1);

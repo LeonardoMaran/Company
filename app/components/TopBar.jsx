@@ -10,13 +10,13 @@ export default class TopBar extends Component {
   logout = () => {
     Session.logout();
     this.setState({account: null});
-    browserHistory.push('/login');
+    browserHistory.push('/');
   };
 
   componentDidMount() {
     let session = Session.current();
     if(session == null) {
-      browserHistory.push('/login');
+      browserHistory.push('/');
     }
   }
 
@@ -28,7 +28,7 @@ export default class TopBar extends Component {
         {
           account == null
           ? null
-          : <Dropdown title={<Link to="/">{account.username}</Link>}>
+          : <Dropdown title={<Link>{account.username}</Link>}>
               <div onClick={this.logout} className="logout">退出登录</div>
             </Dropdown>
         }

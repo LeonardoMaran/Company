@@ -3,14 +3,15 @@ import {Route, IndexRoute} from 'react-router';
 import './lib';
 
 import Layout from './Layout';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import Home from './pages/Home';
 import Calendar from './pages/Calendar';
 import Users from './pages/Users';
 import User from './pages/User';
 import NewUser from './pages/NewUser';
 import Company from './pages/Company';
 import EditCompany from './pages/EditCompany';
+import Role from './pages/Role';
+import Permission from './pages/Permission';
 import Partner from './pages/Partner';
 import Product from './pages/Product';
 import NewProduct from './pages/NewProduct';
@@ -31,7 +32,7 @@ import DepartmentDetail from './pages/DepartmentDetail';
 import Job from './pages/Job';
 
 export default [
-  <Route path="/login" component={Login} />,
+  <Route path="/" component={Home} />,
   <Route path="/product" component={Layout}>
     <Route path="list" component={Product} />
   </Route>,
@@ -43,11 +44,13 @@ export default [
     <Route path="product/new" component={NewProduct} />
   </Route>,
   <Route path="/config" component={Layout}>
-    <Route path="users" component={Users} />
-    <Route path="users/new" component={NewUser} />
-    <Route path="users/:id" component={User} />
+    <Route path="user" component={Users} />
+    <Route path="user/new" component={NewUser} />
+    <Route path="user/:id" component={User} />
     <Route path="company" component={Company} />
     <Route path="company/edit" component={EditCompany} />
+    <Route path="role" component={Role} />
+    <Route path="permission" component={Permission} />
   </Route>,
   <Route path="/purchase" component={Layout}>
     <Route path="inquiry" component={Inquiry} />

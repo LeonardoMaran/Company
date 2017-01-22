@@ -25,12 +25,12 @@ export default class NewSupplier extends Component {
         <h1>新增供应商</h1>
         <button onClick={this.save} className="btn btn-primary" style={{marginBottom: '10px'}}>保存</button>
         <div className="wrap">
-          <p><label><span>名字</span><input ref="name" type="text" /></label></p>
-          <p><label><span>工作岗位</span><input ref="function" type="text" /></label></p>
-          <p><label><span>电话</span><input ref="phone" type="text" /></label></p>
-          <p><label><span>手机</span><input ref="mobile" type="text" /></label></p>
-          <p><label><span>email</span><input ref="email" type="text" /></label></p>
-          <p><label><span>网址</span><input ref="email" type="text" /></label></p>
+          <p><label><span>名字</span><input ref="name" className="border-bottom-input" type="text" /></label></p>
+          <p><label><span>工作岗位</span><input ref="function" className="border-bottom-input" type="text" /></label></p>
+          <p><label><span>电话</span><input ref="phone" className="border-bottom-input" type="text" /></label></p>
+          <p><label><span>手机</span><input ref="mobile" className="border-bottom-input" type="text" /></label></p>
+          <p><label><span>email</span><input ref="email" className="border-bottom-input" type="text" /></label></p>
+          <p><label><span>网址</span><input ref="email" className="border-bottom-input" type="text" /></label></p>
         </div>
       </div>
     )

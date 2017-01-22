@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router';
 import DataTable from '../components/DataTable';
 import Dialog, {DialogHeader, DialogBody, DialogFooter} from '../components/Dialog';
+import {formatTime} from '../lib';
 import Session from '../lib/Session';
 import ApiCaller from '../lib/ApiCaller';
 import '../styles/Users.sass';
@@ -9,17 +10,20 @@ import '../styles/Users.sass';
 export default class Users extends Component {
   state = {users: []};
 
-  openDelete = (userId) => {
-    this.setState({userId});
-    this.refs.delete.open();
-  }
-
   getUser = () => {
-    ApiCaller.loadData(`/api/user`, {}, (result, error) => {
+    let account = Session.current();
+    ApiCaller.loadData(`/api/user`, {
+      query: {"write_account": account.username}
+    }, (result, error) => {
       if(result.status == 200) {
         this.setState({users: result.body.item});
       }
     });
+  }
+
+  openDelete = (userId) => {
+    this.setState({userId});
+    this.refs.delete.open();
   }
 
   deleteUser = () => {
@@ -40,12 +44,12 @@ export default class Users extends Component {
 
   render() {
     let fields = [
-     {label: '名字', name: 'realname'},
      {label: '用户名', name: 'username'},
+     {label: '名字', name: 'realname'},
      {label: '邮箱', name: 'email'},
-     {label: '最后连接', name: 'last_presence'},
+     {label: '最后连接', compute: item => formatTime(item.last_presence)},
      {label: '操作', compute: item => <div>
-       <Link className="btn btn-default" to={`/config/users/${item.id}`} style={{margin: '5px'}}>查看详情</Link>
+       <Link className="btn btn-default" to={`/config/user/${item.id}`} style={{margin: '5px'}}>查看详情</Link>
        <button className="btn btn-primary" onClick={() => this.openDelete(item.id)}>删除</button>
       </div>
      }
@@ -54,7 +58,7 @@ export default class Users extends Component {
     return (
       <div id="users">
         <h1>用户</h1>
-        <Link to="/config/users/new" className="btn btn-primary" style={{marginBottom: '10px'}}>创建</Link>
+        <Link to="/config/user/new" className="btn btn-primary" style={{marginBottom: '10px'}}>创建</Link>
 				<DataTable fields={fields} items={this.state.users} />
         <Dialog ref="delete">
           <DialogHeader> 删除用户 </DialogHeader>

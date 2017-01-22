@@ -20,7 +20,7 @@ export default class Login extends Component {
 			if (result.status == 200) {
 				let account = result.body;
         Session.login(account);
-        browserHistory.push('/config/users');
+        browserHistory.push('/config/user');
 			} else {
 				this.setState({message: result.text});
 			}

@@ -21,7 +21,7 @@ export default class SalesOrder extends Component {
     return (
       <div id="order">
         <h1>销售订单</h1>
-        <Link to="/config/users/new" className="btn btn-primary" style={{marginBottom: '10px'}}>创建</Link>
+        <Link to="/config/user/new" className="btn btn-primary" style={{marginBottom: '10px'}}>创建</Link>
 				<DataTable fields={fields} items={goodsList} />
       </div>
     );

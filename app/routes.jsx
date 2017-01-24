@@ -16,6 +16,10 @@ import Partner from './pages/Partner';
 import Product from './pages/Product';
 import NewProduct from './pages/NewProduct';
 import Quotation from './pages/Quotation';
+import NewQuotation from './pages/NewQuotation';
+import Customer from './pages/Customer';
+import NewCustomer from './pages/NewCustomer';
+import CustomerDetail from './pages/CustomerDetail';
 import SalesOrder from './pages/SalesOrder';
 import Inquiry from './pages/Inquiry';
 import PurchaseOrder from './pages/PurchaseOrder';
@@ -39,9 +43,14 @@ export default [
   <Route path="/sales" component={Layout}>
     <Route path="partner" component={Partner} />
     <Route path="quotation" component={Quotation} />
+    <Route path="quotation/new" component={NewQuotation} />
     <Route path="order" component={SalesOrder} />
     <Route path="product" component={Product} />
     <Route path="product/new" component={NewProduct} />
+    <Route path="customer" component={Customer} />
+    <Route path="customer/new" component={NewCustomer} />
+    <Route path="customer/edit/:id" component={NewCustomer} />
+    <Route path="customer/:id" component={CustomerDetail} />
   </Route>,
   <Route path="/config" component={Layout}>
     <Route path="user" component={Users} />

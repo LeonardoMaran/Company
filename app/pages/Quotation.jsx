@@ -21,7 +21,7 @@ export default class Quotation extends Component {
     return (
       <div id="quotation">
         <h1>报价单</h1>
-        <Link to="/config/user/new" className="btn btn-primary" style={{marginBottom: '10px'}}>创建</Link>
+        <Link to="/sales/quotation/new" className="btn btn-primary" style={{marginBottom: '10px'}}>创建</Link>
 				<DataTable fields={fields} items={goodsList} />
       </div>
     );

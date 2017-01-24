@@ -7,7 +7,7 @@ import '../styles/Users.sass';
 
 export default class NewUser extends Component {
   state = {roles: []};
-
+  
   save = () => {
     let account = Session.current();
     ApiCaller.postData(`/api/user`, {

@@ -32,9 +32,9 @@ export default function Layout(props) {
       name: '销售',
       module: (
         <AccordionElement title="销售">
-          <AccordionItem to="/sales/inquiry">报价单</AccordionItem>
+          <AccordionItem to="/sales/quotation">报价单</AccordionItem>
           <AccordionItem to="/sales/order">销售订单</AccordionItem>
-          <AccordionItem to="/sales/supplier">客户</AccordionItem>
+          <AccordionItem to="/sales/customer">客户</AccordionItem>
         </AccordionElement>
       )
     },

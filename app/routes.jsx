@@ -15,16 +15,21 @@ import Permission from './pages/Permission';
 import Partner from './pages/Partner';
 import Product from './pages/Product';
 import NewProduct from './pages/NewProduct';
+import ProductDetail from './pages/ProductDetail';
 import Quotation from './pages/Quotation';
-import NewQuotation from './pages/NewQuotation';
+import NewSaleOrder from './pages/NewSaleOrder';
 import Customer from './pages/Customer';
 import NewCustomer from './pages/NewCustomer';
 import CustomerDetail from './pages/CustomerDetail';
-import SalesOrder from './pages/SalesOrder';
+import SaleOrderDetail from './pages/SaleOrderDetail';
+import SaleOrder from './pages/SaleOrder';
 import Inquiry from './pages/Inquiry';
+import NewInquiry from './pages/NewInquiry';
 import PurchaseOrder from './pages/PurchaseOrder';
+import PurchaseOrderDetail from './pages/PurchaseOrderDetail';
 import Supplier from './pages/Supplier';
 import NewSupplier from './pages/NewSupplier';
+import SupplierDetail from './pages/SupplierDetail';
 import Stock from './pages/Stock';
 import Bill from './pages/Bill';
 import Employee from './pages/Employee';
@@ -43,10 +48,16 @@ export default [
   <Route path="/sales" component={Layout}>
     <Route path="partner" component={Partner} />
     <Route path="quotation" component={Quotation} />
-    <Route path="quotation/new" component={NewQuotation} />
-    <Route path="order" component={SalesOrder} />
+    <Route path="quotation/new" component={NewSaleOrder} />
+    <Route path="quotation/edit/:id" component={NewSaleOrder} />
+    <Route path="quotation/:id" component={SaleOrderDetail} />
+    <Route path="order" component={SaleOrder} />
+    <Route path="order/new" component={NewSaleOrder} />
+    <Route path="order/edit/:id" component={NewSaleOrder} />
+    <Route path="order/:id" component={SaleOrderDetail} />
     <Route path="product" component={Product} />
     <Route path="product/new" component={NewProduct} />
+    <Route path="product/:id" component={ProductDetail} />
     <Route path="customer" component={Customer} />
     <Route path="customer/new" component={NewCustomer} />
     <Route path="customer/edit/:id" component={NewCustomer} />
@@ -63,10 +74,20 @@ export default [
   </Route>,
   <Route path="/purchase" component={Layout}>
     <Route path="inquiry" component={Inquiry} />
+    <Route path="inquiry/new" component={NewInquiry} />
+    <Route path="inquiry/edit/:id" component={NewInquiry} />
+    <Route path="inquiry/:id" component={PurchaseOrderDetail} />
     <Route path="order" component={PurchaseOrder} />
+    <Route path="order/new" component={NewInquiry} />
+    <Route path="order/edit/:id" component={NewInquiry} />
+    <Route path="order/:id" component={PurchaseOrderDetail} />
     <Route path="supplier" component={Supplier} />
     <Route path="supplier/new" component={NewSupplier} />
+    <Route path="supplier/edit/:id" component={NewSupplier} />
+    <Route path="supplier/:id" component={SupplierDetail} />
     <Route path="product" component={Product} />
+    <Route path="product/new" component={NewProduct} />
+    <Route path="product/:id" component={ProductDetail} />
     <Route path="stock" component={Stock} />
     <Route path="bill" component={Bill} />
   </Route>,

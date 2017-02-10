@@ -1,0 +1,58 @@
+.default-step-title
+  display: inline-block
+  width: 80px
+  height: 34px
+  background-color: #337ab7
+  position: relative
+  text-align: center
+  line-height: 34px
+  font-size: 13px
+  color: #fff
+  font-weight: 600
+.default-step-title:not(:first-child)
+  margin-left: 35px
+.default-step-title:not(:first-child)::before
+  content: ""
+  position: absolute
+  display: block
+  bottom: 0px
+  border: 17px solid #337ab7
+  left: -32px
+  border-right-width: 17px
+  border-left-color: transparent
+.default-step-title:not(:last-child)::after
+  content: ""
+  position: absolute
+  left: 80px
+  top: 0px
+  width: 0
+  height: 0
+  border: 17px solid transparent
+  border-left-color: #337ab7
+.default-step-title.remaining
+  background-color: #C8C8C8
+.default-step-title.remaining:not(:first-child)::before
+  border-color: #C8C8C8
+  border-left-color: transparent
+.default-step-title.remaining:not(:last-child)::after
+  border-left-color: #C8C8C8
+
+.nav-step-title
+  display: inline-block
+  width: 80px
+  height: 34px
+  background-color: transparent
+  position: relative
+  text-align: left
+  line-height: 34px
+  font-size: 14px
+  color: #337ab7
+  font-weight: 700
+.nav-step-title:not(:first-child)
+  margin-left: 10px
+.nav-step-title:not(:first-child)::before
+  content: ">>"
+  position: absolute
+  left: -25px
+.nav-step-title.remaining
+  color: #C8C8C8

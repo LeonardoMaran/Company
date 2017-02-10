@@ -25,6 +25,7 @@ export default function Layout(props) {
           <AccordionItem to="/purchase/inquiry">询价单</AccordionItem>
           <AccordionItem to="/purchase/order">采购订单</AccordionItem>
           <AccordionItem to="/purchase/supplier">供应商</AccordionItem>
+          <AccordionItem to="/purchase/product">产品</AccordionItem>
         </AccordionElement>
       )
     },
@@ -35,6 +36,15 @@ export default function Layout(props) {
           <AccordionItem to="/sales/quotation">报价单</AccordionItem>
           <AccordionItem to="/sales/order">销售订单</AccordionItem>
           <AccordionItem to="/sales/customer">客户</AccordionItem>
+          <AccordionItem to="/sales/product">产品</AccordionItem>
+        </AccordionElement>
+      )
+    },
+    {
+      name: '库存',
+      module: (
+        <AccordionElement title="库存">
+          <AccordionItem to="/inventory/product">产品</AccordionItem>
         </AccordionElement>
       )
     },
@@ -45,14 +55,6 @@ export default function Layout(props) {
             <AccordionItem to="/hr/employee">员工</AccordionItem>
             <AccordionItem to="/hr/department">部门</AccordionItem>
             <AccordionItem to="/hr/job">工作岗位</AccordionItem>
-        </AccordionElement>
-      )
-    },
-    {
-      name: '库存',
-      module: (
-        <AccordionElement title="库存">
-          <AccordionItem to="/inventory/product">产品</AccordionItem>
         </AccordionElement>
       )
     },
@@ -76,10 +78,7 @@ export default function Layout(props) {
           <Accordion>
           {
             account != null
-            ? account.role.permission.map((item, i) => {
-                let node = moduleArr.find(module => module.name == item);
-                return <div key={i}>{node.module}</div>;
-              })
+            ? moduleArr.map(module => account.role.permission.includes(module.name) ? module.module : null)
             : null
           }
           </Accordion>

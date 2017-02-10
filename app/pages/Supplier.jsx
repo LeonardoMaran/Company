@@ -12,7 +12,7 @@ export default class Supplier extends Component {
       query: {"supplier": true},
     }, (result, error) => {
       if(result.status == 200) {
-        this.setState({suppliers: result.body.item});        
+        this.setState({suppliers: result.body.item});
       }
     });
   }
@@ -41,7 +41,7 @@ export default class Supplier extends Component {
      {label: '电话', name: 'phone'},
      {label: 'Email', name: 'email'},
      {label: '操作', compute: item => <div>
-        <Link to="" className="btn btn-default" style={{margin: '5px'}}>查看详情</Link>
+        <Link to={`/purchase/supplier/${item.id}`} className="btn btn-default" style={{margin: '5px'}}>查看详情</Link>
         <button className="btn btn-primary" onClick={() => this.openDelete(item.id)}>删除</button>
       </div>
      }

@@ -22,7 +22,6 @@ export default class NewCustomer  extends Component {
   };
 
   save = () => {
-    let account = Session.current();
     let pathname = this.props.route.path;
     let params = {
       "name": this.refs.name.value,
@@ -37,8 +36,11 @@ export default class NewCustomer  extends Component {
     };
 
     if(pathname.split('/')[1] == "edit") {
-      ApiCaller.updateData('contact', this.props.params.id, params);
-      browserHistory.push("/sales/customer");
+      ApiCaller
+      .updateData('contact', this.props.params.id, params)
+      .then(() => {
+        browserHistory.push("/sales/customer");
+      });
     } else {
       ApiCaller.postData(`/api/contact`, params, (result, error) => {
         if(result.status == 200) {
@@ -65,9 +67,11 @@ export default class NewCustomer  extends Component {
 
   render() {
     let customer = this.state.customer;
+    let pathname = this.props.route.path;
+
     return (
       <div id="new_customer">
-        <h1>客户 / {Object.isEmpty(this.state.customer) ? "新建" : "编辑"}</h1>
+        <h1>客户 / {pathname.split('/')[1] == "edit" ? "编辑" : "新建"}</h1>
         <button onClick={this.save} className="btn btn-primary" style={{marginBottom: '10px'}}>保存</button>
         <div>
           <h1><TextInput ref="name" value={customer.name} onChange={this.changeFieldValue("name")} className="name border-bottom-input" placeholder="名字" /></h1>

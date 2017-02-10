@@ -37,6 +37,7 @@ class ApiCaller {
     req.end((err, res) => {
       if (err) {
         this.handleError(err, res);
+        callback && callback(res, err);
       } else {
         callback && callback(res, err);
       }
@@ -94,10 +95,10 @@ class ApiCaller {
       .patch(config.apiUrl + '/api/' + name + "/" + id)
       .set('Authorization', 'Bearer ' + account.token)
       .send(data);
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       req.end((err, res) => {
         if (err) {
-          this.handleError(err, res);
+          reject(res, err);
         } else {
           resolve(res, err);
         }
@@ -114,10 +115,10 @@ class ApiCaller {
       .patch(config.apiUrl + '/api/' + name + "/" + id)
       .set('Authorization', 'Bearer ' + account.token)
       .send({[field]: value});
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       req.end((err, res) => {
         if (err) {
-          this.handleError(err, res);
+          reject(res, err);
         } else {
           resolve(res, err);
         }

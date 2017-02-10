@@ -10,28 +10,34 @@ export default class SelectBox extends Component {
     firstSelected: PropTypes.bool
   };
 
-  state = {value: this.props.value || this.props.defaultValue, option: {}, show: false};
+  state = {value: this.props.value || this.props.defaultValue, option: this.props.option || {}, show: false};
 
   get value() {
     return this.state.value;
-  }
+  };
 
   close = (option) => {
     if(option) {
-      this.setState({option});
+      this.setState({option, value: option.value});
     }
     this.setState({show: false});
-  }
+  };
 
   toggle = () => {
     this.setState({show: !this.state.show});
+  };
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.option != this.props.option) {
+      this.setState({option: nextProps.option});
+    }
   }
 
   render() {
     const {
       width,
       options,
-      value,
+      option,
       defaultValue,
       onChange,
       firstSelected,
@@ -55,6 +61,7 @@ export default class SelectBox extends Component {
             </ul>
           : null
         }
+        <span className="fa fa-sort-desc"></span>
       </div>
     );
   }
